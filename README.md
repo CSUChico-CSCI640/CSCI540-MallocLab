@@ -1,11 +1,11 @@
-#CSCI540: Malloc Lab: Writing a Dynamic Storage Allocator
+# CSCI540: Malloc Lab: Writing a Dynamic Storage Allocator
 
-##Introduction
+## Introduction
 In this lab you will be writing a dynamic storage allocator for C programs, i.e., your own version of the *malloc*, *free* and *realloc* routines. You are encouraged to explore the design space creatively and implement an allocator that is correct, efficient and fast.
-##Logistics
+## Logistics
 Any clarifications and revisions to the assignment will be posted on the course Piazza discussion board.
 
-##Hand Out Instructions
+## Hand Out Instructions
 Download the *malloclab-handout.tar* file from my webpage. Start by cloning the malloc assignment to a directory in which you plan to do your work. This will cause a number of files to be downloaded into the directory. The only file you will be modifying and handing in is *mm.c* file. The *mdriver.c* program is a driver program that allows you to evaluate the performance of your solution. Use the command *make* to generate the driver code and run it with the command *./mdriver -V*. (The *-V* flag displays helpful summary information.)
 
 Looking at the file *mm.c* you’ll notice a C structure team into which you should insert the requested identifying information about yourself. Do this right away so you don’t forget.
@@ -50,7 +50,7 @@ Some examples of what a heap checker might check are:
 
 Your heap checker will consist of the function *int mm_check(void)* in *mm.c*. It will check any invariants or consistency conditions you consider prudent. It returns a nonzero value if and only if your heap is consistent. You are not limited to the listed suggestions nor are you required to check all of them. You are encouraged to print out error messages when *mm_check* fails. This consistency checker is for your own debugging during development. When you submit *mm.c*, make sure to remove any calls to *mm_check* as they will slow down your throughput.
 
-##Support Routines
+## Support Routines
 The memlib.c package simulates the memory system for your dynamic memory allocator. You can invoke the following functions in *memlib.c*:
 * void* mem_sbrk(int incr): Expands the heap by *incr* bytes, where *incr* is a positive non-zero integer and returns a generic pointer to the first byte of the newly allocated heap area. The semantics are identical to the Unix *sbrk* function, except that *mem_sbrk* accepts only a positive non-zero integer argument.
 * void* mem_heap_lo(void): Returns a generic pointer to the first byte in the heap.
@@ -58,7 +58,7 @@ The memlib.c package simulates the memory system for your dynamic memory allocat
 * size_t mem_heapsize(void): Returns the current size of the heap in bytes.
 * size_t mem_pagesize(void): Returns the system’s page size in bytes (4K on Linux systems).
 
-##The Trace-driven Driver Program
+## The Trace-driven Driver Program
 The driver program *mdriver.c* in the *malloclab-handout* folder distribution tests your *mm.c* package for correctness, space utilization, and throughput. The driver program is controlled by a set of *trace files* that are included in the *malloclab-handout* distribution folder. Each trace file contains a sequence of allocate, reallocate, and free directions that instruct the driver to call your *mm_malloc*, *mm_realloc*, and *mm_free* routines in some sequence. The driver and the trace files are the same ones we will use when we grade your handin *mm.c* file.
 
 The driver *mdriver.c* accepts the following command line arguments:
@@ -70,12 +70,12 @@ The driver *mdriver.c* accepts the following command line arguments:
 * -v: Verbose output. Print a performance breakdown for each tracefile in a compact table.
 * -V: More verbose output. Prints additional diagnostic information as each trace file is processed. Useful during debugging for determining which trace file is causing your malloc package to fail.
 
-##Programming Rules
+## Programming Rules
 * You should not change any of the interfaces in *mm.c*.
 * You should not invoke any memory-management related library calls or system calls. This excludes the use of *malloc*, *calloc*, *free*, *realloc*, *sbrk*, *brk* or any variants of these calls in your code.
 * For consistency with the *libc malloc* package, which returns blocks aligned on 8-byte boundaries, your allocator must always return pointers that are aligned to 8-byte boundaries. The driver will enforce this requirement for you.
 
-##Evaluation
+## Evaluation
 You’ll be evaluated by having a functioning malloc and being able to explain how it works. The better your malloc implementation, the better your score – but you must still be able to explain how it works in a evaluation quiz or grading meeting.
 
 The driver program summarizes the performance of your allocator by computing a *performance index*, *P*, which is a weighted sum of the space utilization and throughput:
@@ -88,7 +88,7 @@ default of *w* = 0.6.
 
 Observing that both memory and CPU cycles are expensive system resources, we adopt this formula to encourage balanced optimization of both memory utilization and throughput. Ideally, the performance index will reach *P = w + (1 - w) = 1* or *100%*. Since each metric will contribute at most *w* and *1-w* to the performance index, respectively, you should not go to extremes to optimize either the memory utilization or the throughput only. To receive a good score, you must achieve a balance between utilization and throughput.
 
-There is a scoring program, called *RUN-MM* that will compile your program and run the test cases. This will report an “average score”. Your grade on the “does it work” portion of the machine problem is computed as *Grade=-30.7 + avg*1.545*, where avg is the average score.
+There is a scoring program, called *RUN-MM* that will compile your program and run the test cases. This will report an “average score”. Your grade on the “does it work” portion of the machine problem is computed as *Grade=-30.7 + avg*1.545*, where avg is the average score. **If the *RUN-MM* program fails to run you will recieve a 0.**
 
 The scoring function is based on using specific machines and specific implementations as goals, these are a guide:
 * Score of 65, or 69% is the implementation is the book, fleshed out and implemented. This is a “first fit” implicit list allocator. This is the implementation you are given to start, you will have to be able to explain this code if you don't do anything more.
@@ -99,10 +99,10 @@ The scoring function is based on using specific machines and specific implementa
 
 You can earn up to 10% extra credit based on the score (i.e. a maximum score of 110).
 
-##Handin Instructions
+## Handin Instructions
 You will handin your *mm.c* file via Turnin.
 
-##Hints
+## Hints
 * Use the *mdriver -f* option. During initial development, using tiny trace files will simplify debugging and testing. We have included two such trace files (short1,2-bal.rep) that you can use for initial debugging.
 * Use the *mdriver -v* and *-V options.* The *-v* option will give you a detailed summary for each trace file. The *-V* will also indicate when each trace file is read, which will help you isolate errors.
 * Compile with *gcc -g* and use a debugger. A debugger will help you isolate and identify out of bounds memory references.
@@ -111,5 +111,5 @@ You will handin your *mm.c* file via Turnin.
 * Do your implementation in stages. The first 9 traces contain requests to *malloc* and *free*. The last 2 traces contain requests for *realloc*, *malloc*, and *free*. We recommend that you start by getting your *malloc* and *free* routines working correctly and efficiently on the first 9 traces. Only then should you turn your attention to the *realloc* implementation. For starters, we’ve built a *realloc* on top of your existing *malloc* and *free* implementations. But to get really good performance, you will need to build a stand-alone *realloc*.
 * **Start early!** It is possible to write an efficient malloc package with a few pages of code. However, we can guarantee that it will be some of the most difficult and sophisticated code you have written so far in your career. Pointers and direct manipulation of memory isn't easy to debug or write. So start early, and good luck!
 
-##References
+## References
 [1] The value for *T*<sub>libc</sub> is a constant in the driver (600 Kops/s) that we established when we configured the program. Since we’re using so many different machines, you should take this as a “nominal” throughput for malloc on modern-day machines.
