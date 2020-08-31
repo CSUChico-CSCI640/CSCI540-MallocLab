@@ -88,11 +88,10 @@ default of *w* = 0.6.
 
 Observing that both memory and CPU cycles are expensive system resources, we adopt this formula to encourage balanced optimization of both memory utilization and throughput. Ideally, the performance index will reach *P = w + (1 - w) = 1* or *100%*. Since each metric will contribute at most *w* and *1-w* to the performance index, respectively, you should not go to extremes to optimize either the memory utilization or the throughput only. To receive a good score, you must achieve a balance between utilization and throughput.
 
-There is a scoring program, called *RUN-MM* that will compile your program and run the test cases. This will report an “average score”. Your grade on the “does it work” portion of the machine problem is computed as *Grade=-30.7 + avg*1.545*, where avg is the average score. **If the *RUN-MM* program fails to run you will recieve a 0.**
+There is a scoring program, called *RUN-MM* that will compile your program and run the test cases. This will report an “average score”. Due to the *RUN-MM* code's weighted scores mentioned below not matching the implementations your success score will be based on what implementation you have written assuming it passes all the driver tests. If I can fix the RUN-MM script to generate the correct scores an update will be on Piazza. **If the *RUN-MM* program fails to run you will recieve a 0.** 
 
 The scoring function is based on using specific machines and specific implementations as goals, these are a guide:
 * Score of 65, or 69% is the implementation is the book, fleshed out and implemented. This is a “first fit” implicit list allocator. This is the implementation you are given to start, you will have to be able to explain this code if you don't do anything more.
-* Score of 75, or 86%, is a “next fit” implicit list allocator
 * Score of 84, or 99%, is an “explicit” list allocator (see 9.9.13)
 * Score of 87-89, or 100-104%, using a five “circular” lists
 * Score of 95, or 112%, is a “tree based” allocator
