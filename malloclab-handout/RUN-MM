@@ -48,8 +48,8 @@ echo ""
 echo "-----------------------------------------------------------------------------"
 echo "For program $PROGRAM"
 echo "sum is $sum, samples is $samples"
-score=$(echo "print $sum/$samples if $samples >0 else 0" | python)
-grade=$(echo "print -30.7 + $score * 1.545" | python)
+score=$(echo "print($sum/$samples if $samples >0 else 0)" | python3)
+grade=$(echo "print(-30.7 + $score * 1.545)" | python3)
 missed=`expr $tries - $samples`
 echo "Average Score is $score with $missed missed cases for grade of $grade"
 echo "-----------------------------------------------------------------------------"
